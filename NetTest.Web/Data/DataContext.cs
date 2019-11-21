@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using NetTest.Web.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace NetTest.Web.Data
 {
-    public class DataContext:DbContext
+    public class DataContext: IdentityDbContext<SuperUser>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Manager> Managers { get; set; }
 
     }
 }
