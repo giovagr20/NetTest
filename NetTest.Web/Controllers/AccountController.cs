@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NetTest.Web.Helpers;
 using NetTest.Web.Models;
 using System.Linq;
@@ -7,7 +8,9 @@ using System.Threading.Tasks;
 namespace NetTest.Web.Controllers
 {
     public class AccountController : Controller
+
     {
+        
         private readonly IUserHelper _userHelper;
 
         public AccountController(IUserHelper userHelper)

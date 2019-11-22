@@ -1,5 +1,4 @@
 ﻿@model NetTest.Web.Models.LoginViewModel
-@{
     @{
         ViewData["Title"] = "Login";
     }
@@ -35,6 +34,7 @@
             </form>
         </div>
     </div>
+        
 
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

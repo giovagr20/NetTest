@@ -11,23 +11,22 @@ using NetTest.Web.Data.Entities;
 
 namespace NetTest.Web.Controllers
 {
-    public class CustomersController : Controller
+    public class ManagersController : Controller
     {
-
         private readonly DataContext _context;
 
-        public CustomersController(DataContext context)
+        public ManagersController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Customers
+        // GET: Managers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customers.ToListAsync());
+            return View(await _context.Managers.ToListAsync());
         }
 
-        // GET: Customers/Details/5
+        // GET: Managers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,40 +34,40 @@ namespace NetTest.Web.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var manager = await _context.Managers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(manager);
         }
 
-        // GET: Customers/Create
+        // GET: Managers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Managers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize(Roles = "Manager")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id")] Manager manager)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
+                _context.Add(manager);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(customer);
+            return View(manager);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Managers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +75,23 @@ namespace NetTest.Web.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
+            var manager = await _context.Managers.FindAsync(id);
+            if (manager == null)
             {
                 return NotFound();
             }
-            return View(customer);
+            return View(manager);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Managers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Authorize(Roles = "Manager")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] Manager manager)
         {
-            if (id != customer.Id)
+            if (id != manager.Id)
             {
                 return NotFound();
             }
@@ -101,12 +100,12 @@ namespace NetTest.Web.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(manager);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!ManagerExists(manager.Id))
                     {
                         return NotFound();
                     }
@@ -117,10 +116,10 @@ namespace NetTest.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(customer);
+            return View(manager);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Managers/Delete/5
         [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -129,30 +128,31 @@ namespace NetTest.Web.Controllers
                 return NotFound();
             }
 
-            var customer = await _context.Customers
+            var manager = await _context.Managers
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (manager == null)
             {
                 return NotFound();
             }
 
-            return View(customer);
+            return View(manager);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Managers/Delete/5
         [HttpPost, ActionName("Delete")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var customer = await _context.Customers.FindAsync(id);
-            _context.Customers.Remove(customer);
+            var manager = await _context.Managers.FindAsync(id);
+            _context.Managers.Remove(manager);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CustomerExists(int id)
+        private bool ManagerExists(int id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            return _context.Managers.Any(e => e.Id == id);
         }
     }
 }
