@@ -22,12 +22,13 @@ namespace NetTest.Web.Data
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+
+
+            var manager = await CheckUserAsync("123456", "Giovanni", "Gomez", 25, "Male", "Colombian", "giovanni@yopmail.com","Manager");
+            var user = await CheckUserAsync("456789", "Isabel", "Gomez", 26, "Female", "Colombian", "isabel@yopmail.com","User");
+
             await CheckRoles();
             await CheckProductsAsync();
-
-            var manager = await CheckSuperUserAsync("123456", "Giovanni", "Gomez", 25, "Male", "Colombian", "giovanni@yopmail.com","Manager");
-            var user = await CheckSuperUserAsync("456789", "Isabel", "Gomez", 26, "Female", "Colombian", "isabel@yopmail.com","User");
-
 
         }
 
@@ -40,7 +41,7 @@ namespace NetTest.Web.Data
             }
         }
 
-        private async Task<User> CheckSuperUserAsync(string document, 
+        private async Task<User> CheckUserAsync(string document, 
             string firstName, 
             string lastName, 
             int age, 

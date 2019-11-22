@@ -22,9 +22,11 @@ namespace NetTest.Web.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Customers.ToListAsync());
+            return View( _context.Customers
+        .Include(o => o.User)
+        .Include(o => o.Products));
         }
 
         // GET: Customers/Details/5
