@@ -31,16 +31,16 @@ namespace NetTest.Web.Data
 
         }
 
-        private async Task CheckManagerAsync(SuperUser superUser)
+        private async Task CheckManagerAsync(User User)
         {
             if (!_context.Managers.Any())
             {
-                _context.Managers.Add(new Manager { SuperUser = superUser });
+                _context.Managers.Add(new Manager { User = User });
                 await _context.SaveChangesAsync();
             }
         }
 
-        private async Task<SuperUser> CheckSuperUserAsync(string document, 
+        private async Task<User> CheckSuperUserAsync(string document, 
             string firstName, 
             string lastName, 
             int age, 
@@ -52,7 +52,7 @@ namespace NetTest.Web.Data
             var user = await _userHelper.GetUserByEmailAsync(email);
             if (user == null)
             {
-                user = new SuperUser
+                user = new User
                 {
                     FirstName = firstName,
                     LastName = lastName,

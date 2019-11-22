@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetTest.Web.Data;
+using NetTest.Web.Helpers;
 
 namespace NetTest.Web
 {

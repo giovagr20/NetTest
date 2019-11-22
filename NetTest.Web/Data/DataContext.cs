@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace NetTest.Web.Data
 {
-    public class DataContext: IdentityDbContext<SuperUser>
+    public class DataContext: IdentityDbContext<User>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
             
         }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Manager> Managers { get; set; }

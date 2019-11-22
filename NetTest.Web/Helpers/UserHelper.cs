@@ -9,25 +9,25 @@ namespace NetTest.Web.Helpers
 {
     public class UserHelper : IUserHelper
     {
-        private readonly UserManager<SuperUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public UserHelper(
-            UserManager<SuperUser> userManager,
+            UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> AddUserAsync(SuperUser superUser, string password)
+        public async Task<IdentityResult> AddUserAsync(User User, string password)
         {
-            return await _userManager.CreateAsync(superUser, password);
+            return await _userManager.CreateAsync(User, password);
         }
 
-        public async Task AddUserToRoleAsync(SuperUser superUser, string roleName)
+        public async Task AddUserToRoleAsync(User User, string roleName)
         {
-            await _userManager.AddToRoleAsync(superUser, roleName);
+            await _userManager.AddToRoleAsync(User, roleName);
         }
 
         public async Task CheckRoleAsync(string roleName)
@@ -42,18 +42,18 @@ namespace NetTest.Web.Helpers
             }
         }
 
-        public async Task<SuperUser> GetUserByEmailAsync(string email)
+        public async Task<User> GetUserByEmailAsync(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             return user;
         }
 
-        public async Task<bool> IsUserInRoleAsync(SuperUser superUser, string roleName)
+        public async Task<bool> IsUserInRoleAsync(User User, string roleName)
         {
-            return await _userManager.IsInRoleAsync(superUser, roleName);
+            return await _userManager.IsInRoleAsync(User, roleName);
         }
 
-        Task<IdentityResult> IUserHelper.AddUserAsync(SuperUser superUser, string password)
+        Task<IdentityResult> IUserHelper.AddUserAsync(User User, string password)
         {
             throw new NotImplementedException();
         }

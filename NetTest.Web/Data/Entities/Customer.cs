@@ -1,17 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using NetTest.Web.Data.Entities;
 
 namespace NetTest.Web.Data.Entities
 {
-    public class Manager
+    public class Customer
     {
         public int Id { get; set; }
-
         public User User { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
-
 }
-

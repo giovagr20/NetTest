@@ -12,10 +12,10 @@ namespace NetTest.Web.Data.Entities
 
         [MaxLength(15, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public String ItemsAmount { get; set; }
+        public string ItemsAmount { get; set; }
     }
 }

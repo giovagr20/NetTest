@@ -9,15 +9,15 @@ namespace NetTest.Web.Helpers
 {
     public interface IUserHelper
     {
-        Task<SuperUser> GetUserByEmailAsync(string email);
+        Task<User> GetUserByEmailAsync(string email);
 
-        Task<IdentityResult> AddUserAsync(SuperUser superUser, string password);
+        Task<IdentityResult> AddUserAsync(User User, string password);
 
         Task CheckRoleAsync(string roleName);
 
-        Task AddUserToRoleAsync(SuperUser superUser, string roleName);
+        Task AddUserToRoleAsync(User User, string roleName);
 
-        Task<bool> IsUserInRoleAsync(SuperUser superUser, string roleName);
+        Task<bool> IsUserInRoleAsync(User User, string roleName);
 
     }
 }
