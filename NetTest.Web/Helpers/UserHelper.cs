@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using NetTest.Web.Data.Entities;
+using NetTest.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,32 @@ namespace NetTest.Web.Helpers
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        private readonly SignInManager<User> _signInManager;
         public UserHelper(
             UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
+
         }
+
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await _signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                false);
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
 
         public async Task<IdentityResult> AddUserAsync(User User, string password)
         {
@@ -54,6 +73,36 @@ namespace NetTest.Web.Helpers
         }
 
         Task<IdentityResult> IUserHelper.AddUserAsync(User User, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<User> IUserHelper.GetUserByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IUserHelper.CheckRoleAsync(string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IUserHelper.AddUserToRoleAsync(User User, string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IUserHelper.IsUserInRoleAsync(User User, string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<SignInResult> IUserHelper.LoginAsync(LoginViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IUserHelper.LogoutAsync()
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using NetTest.Web.Data.Entities;
+using NetTest.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ namespace NetTest.Web.Helpers
         Task AddUserToRoleAsync(User User, string roleName);
 
         Task<bool> IsUserInRoleAsync(User User, string roleName);
+
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task LogoutAsync();
 
     }
 }
